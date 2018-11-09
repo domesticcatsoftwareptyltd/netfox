@@ -359,11 +359,11 @@ class NFXDebugInfo
 }
 
 
-struct NFXPath
+public struct NFXPath
 {
     static let Documents = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first! as NSString
     
-    static let SessionLog = NFXPath.Documents.appendingPathComponent("session.log");
+    public static let SessionLog = NFXPath.Documents.appendingPathComponent("session.log");
 }
 
 
