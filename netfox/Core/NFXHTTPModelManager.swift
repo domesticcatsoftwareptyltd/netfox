@@ -11,7 +11,7 @@ let _sharedInstance = NFXHTTPModelManager()
 
 public class NFXHTTPModelManager: NSObject
 {
-    static let sharedInstance = NFXHTTPModelManager()
+    public static let sharedInstance = NFXHTTPModelManager()
     var models = [NFXHTTPModel]()
     private let syncQueue = DispatchQueue(label: "NFXSyncQueue")
     
