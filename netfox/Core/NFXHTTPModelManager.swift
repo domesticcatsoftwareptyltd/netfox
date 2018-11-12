@@ -31,7 +31,7 @@ public class NFXHTTPModelManager: NSObject
         }
     }
     
-    func getModels() -> [NFXHTTPModel]
+    public func getModels() -> [NFXHTTPModel]
     {        
         var predicates = [NSPredicate]()
         
