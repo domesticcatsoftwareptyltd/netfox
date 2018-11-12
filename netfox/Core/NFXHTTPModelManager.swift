@@ -7,12 +7,12 @@
 
 import Foundation
 
-private let _sharedInstance = NFXHTTPModelManager()
+let _sharedInstance = NFXHTTPModelManager()
 
-final class NFXHTTPModelManager: NSObject
+class NFXHTTPModelManager: NSObject
 {
     static let sharedInstance = NFXHTTPModelManager()
-    fileprivate var models = [NFXHTTPModel]()
+    var models = [NFXHTTPModel]()
     private let syncQueue = DispatchQueue(label: "NFXSyncQueue")
     
     func add(_ obj: NFXHTTPModel)
