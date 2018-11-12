@@ -9,7 +9,7 @@ import Foundation
 
 let _sharedInstance = NFXHTTPModelManager()
 
-class NFXHTTPModelManager: NSObject
+public class NFXHTTPModelManager: NSObject
 {
     static let sharedInstance = NFXHTTPModelManager()
     var models = [NFXHTTPModel]()
