@@ -56,8 +56,9 @@ open class NFXProtocol: URLProtocol
     {
         self.model = NFXHTTPModel()
         
-        var req: NSMutableURLRequest
-        req = (NFXProtocol.canonicalRequest(for: request) as NSURLRequest).mutableCopy() as! NSMutableURLRequest
+        guard let req = (NFXProtocol.canonicalRequest(for: request) as NSURLRequest).mutableCopy() as? NSMutableURLRequest else {
+            return
+        }
         
         self.model?.saveRequest(req as URLRequest)
         
@@ -67,7 +68,7 @@ open class NFXProtocol: URLProtocol
             session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
         }
         
-        session!.dataTask(with: req as URLRequest, completionHandler: {data, response, error in
+        session?.dataTask(with: req as URLRequest, completionHandler: {data, response, error in
             
             self.model?.saveRequestBody(req as URLRequest)
             self.model?.logRequest(req as URLRequest)
@@ -89,7 +90,7 @@ open class NFXProtocol: URLProtocol
             }
             
             if let data = data {
-                self.client!.urlProtocol(self, didLoad: data)
+                self.client?.urlProtocol(self, didLoad: data)
             }
             
             if let client = self.client {
@@ -109,8 +110,8 @@ open class NFXProtocol: URLProtocol
     
     func loaded()
     {
-        if (self.model != nil) {
-            NFXHTTPModelManager.sharedInstance.add(self.model!)
+        if let model = self.model {
+            NFXHTTPModelManager.sharedInstance.add(model)
         }
         
         NotificationCenter.default.post(name: Notification.Name.NFXReloadData, object: nil)

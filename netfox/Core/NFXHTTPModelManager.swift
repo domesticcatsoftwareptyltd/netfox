@@ -52,7 +52,11 @@ public class NFXHTTPModelManager: NSObject
         let searchPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
         
         let array = (self.models as NSArray).filtered(using: searchPredicate)
-        
-        return array as! [NFXHTTPModel]
+
+        guard let nfxArray = array as? [NFXHTTPModel] else {
+            return []
+        }
+
+        return nfxArray
     }
 }
