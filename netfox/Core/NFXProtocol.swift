@@ -79,8 +79,8 @@ open class NFXProtocol: URLProtocol
                 self.client?.urlProtocol(self, didFailWithError: error)
                 
             } else {
-                if let data = data {
-                    self.model?.saveResponse(response!, data: data)
+                if let response = response, let data = data {
+                    self.model?.saveResponse(response, data: data)
                 }
                 self.loaded()
             }
